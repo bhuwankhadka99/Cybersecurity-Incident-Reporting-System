@@ -10,3 +10,6 @@ class User(db.Model):
     password = db.Column(db.String(255), nullable=False)
     role = db.Column(db.Enum("Admin", "User"), default="User")
     created_at = db.Column(db.DateTime)
+    incidents = db.relationship("Incident", backref="user", lazy=True)
+    activity_logs = db.relationship("ActivityLog", backref="user", lazy=True)
+    
