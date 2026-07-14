@@ -1,3 +1,5 @@
+from asyncio import log
+
 from flask import Blueprint, request, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, User, Incident, ActivityLog
@@ -38,10 +40,17 @@ def register():
     db.session.add(new_user)
     db.session.commit()
 
+    log = ActivityLog(
+        user_id=new_user.id,
+        action="User Registered"
+    )
+
+    db.session.add(log)
+    db.session.commit()
+
     return jsonify({"message": "User registered successfully"}), 201
 
-
-# ---------------- LOGIN ----------------
+  # ---------------- LOGIN ----------------
 @routes.route("/login", methods=["POST"])
 def login():
     data = request.get_json()
@@ -63,13 +72,22 @@ def login():
     if not check_password_hash(user.password, password):
         return jsonify({"error": "Incorrect password"}), 401
 
+    log = ActivityLog(
+        user_id=user.id,
+        action="User Logged In"
+    )
+
+    db.session.add(log)
+    db.session.commit()
+
     return jsonify({
         "message": "Login successful",
         "user": {
             "username": user.username,
             "email": user.email
         }
-    }), 200
+    }), 200 
+
 
 
 # ---------------- CREATE INCIDENT ----------------
@@ -114,6 +132,7 @@ def create_incident():
 # ---------------- GET INCIDENTS ----------------
 @routes.route("/incidents", methods=["GET"])
 def get_incidents():
+
     incidents = Incident.query.all()
 
     output = []
@@ -129,3 +148,42 @@ def get_incidents():
         })
 
     return jsonify({"incidents": output}), 200
+
+# ---------------- UPDATE INCIDENT ----------------
+@routes.route("/incident/<int:id>", methods=["PUT"])
+def update_incident(id):
+    incident = Incident.query.get(id)
+
+    if not incident:
+        return jsonify({"error": "Incident not found"}), 404
+
+    data = request.get_json()
+
+    if "title" in data:
+        incident.title = data["title"]
+
+    if "description" in data:
+        incident.description = data["description"]
+
+    if "severity" in data:
+        incident.severity = data["severity"]
+
+    if "status" in data:
+        incident.status = data["status"]
+
+    db.session.commit()
+
+    return jsonify({"message": "Incident updated successfully"}), 200
+
+# ---------------- DELETE INCIDENT ----------------
+@routes.route("/incident/<int:id>", methods=["DELETE"])
+def delete_incident(id):
+    incident = Incident.query.get(id)
+
+    if not incident:
+        return jsonify({"error": "Incident not found"}), 404
+
+    db.session.delete(incident)
+    db.session.commit()
+
+    return jsonify({"message": "Incident deleted successfully"}), 200
