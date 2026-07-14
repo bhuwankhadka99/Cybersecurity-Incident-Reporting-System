@@ -30,6 +30,12 @@ def register_page():
     return render_template("register.html")
 
 
+# ---------------- LOGIN PAGE ----------------
+@app.route("/login-page")
+def login_page():
+    return render_template("login.html")
+
+
 from routes import routes
 app.register_blueprint(routes)
 

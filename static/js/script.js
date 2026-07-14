@@ -1,5 +1,5 @@
-document.getElementById("registerForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
+document.getElementById("registerForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
 
     const username = document.getElementById("username").value;
     const email = document.getElementById("email").value;
@@ -19,5 +19,5 @@ document.getElementById("registerForm").addEventListener("submit", async functio
 
     const result = await response.json();
 
-    document.getElementById("message").innerText = result.message || result.error;
+    document.getElementById("message").innerHTML = result.message || result.error;
 });
