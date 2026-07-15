@@ -1,9 +1,8 @@
 from flask import Flask, render_template, redirect
-from flask_login import LoginManager
+from flask_login import LoginManager, login_required, current_user
 from config import Config
 from models import db
 from models import User, Category, Incident, ActivityLog
-
 
 app = Flask(__name__)
 
@@ -25,7 +24,7 @@ login_manager = LoginManager()
 
 login_manager.init_app(app)
 
-login_manager.login_view = "routes.login"
+login_manager.login_view = "login_page"
 
 
 @login_manager.user_loader
@@ -65,8 +64,9 @@ def login_page():
 
 # ---------------- DASHBOARD ----------------
 @app.route("/dashboard")
+@login_required
 def dashboard():
-    return render_template("dashboard.html")
+    return render_template("dashboard.html", username=current_user.username)
 
 
 
@@ -74,6 +74,7 @@ def dashboard():
 
 # ---------------- CREATE INCIDENT PAGE ----------------
 @app.route("/create-incident-page")
+@login_required
 def create_incident_page():
     return render_template("create_incident.html")
 
@@ -83,6 +84,7 @@ def create_incident_page():
 
 # ---------------- VIEW INCIDENTS PAGE ----------------
 @app.route("/incidents-page")
+@login_required
 def incidents_page():
     return render_template("incidents.html")
 
@@ -92,6 +94,7 @@ def incidents_page():
 
 # ---------------- ACTIVITY LOG PAGE ----------------
 @app.route("/activity-logs-page")
+@login_required
 def activity_logs_page():
     return render_template("activity_logs.html")
 

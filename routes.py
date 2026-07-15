@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify, render_template
+from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, User, Incident, ActivityLog
 
@@ -8,6 +9,7 @@ routes = Blueprint("routes", __name__)
 
 # ---------------- CREATE INCIDENT PAGE ----------------
 @routes.route("/create-incident")
+@login_required
 def create_incident_page():
     return render_template("create_incident.html")
 
@@ -98,7 +100,7 @@ def login():
 
     if not check_password_hash(user.password, password):
         return jsonify({"error": "Incorrect password"}), 401
-
+    login_user(user)
 
 
     activity = ActivityLog(

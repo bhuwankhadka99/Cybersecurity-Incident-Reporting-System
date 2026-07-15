@@ -1,5 +1,8 @@
+console.log("login.js loaded");
 document.getElementById("loginForm").addEventListener("submit", async function(event) {
     event.preventDefault();
+
+    console.log("Login button clicked");
 
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
@@ -16,6 +19,8 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     });
 
     const result = await response.json();
+    console.log("Status:", response.status);
+    console.log("Result:", result);
 
     document.getElementById("message").innerText =
         result.message || result.error;
