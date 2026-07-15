@@ -1,34 +1,107 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Activity Logs</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<title>Activity Logs - CyberSafe</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+
 </head>
+
+
 <body>
 
-<h1>Activity Logs</h1>
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>User ID</th>
-            <th>Action</th>
-            <th>Timestamp</th>
-        </tr>
-    </thead>
+<nav class="navbar">
 
-    <tbody id="logTable">
-    </tbody>
+
+<div class="logo">
+🛡 CyberSafe
+</div>
+
+
+<a href="/dashboard">
+Dashboard
+</a>
+
+
+</nav>
+
+
+
+
+<div class="container">
+
+
+<div class="incident-card">
+
+
+<h1>
+📜 System Activity Logs
+</h1>
+
+
+<button onclick="loadLogs()" class="create-btn">
+🔄 Refresh Logs
+</button>
+
+
+
+<table border="1" width="100%" style="margin-top:20px;">
+
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>User ID</th>
+
+<th>Action</th>
+
+<th>Timestamp</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="logsTable">
+
+
+</tbody>
+
+
 </table>
+
 
 <br>
 
-<button onclick="window.location.href='/dashboard'">
-    Back to Dashboard
+
+<button
+class="back-btn"
+onclick="window.location.href='/dashboard'">
+
+🔙 Back to Dashboard
+
 </button>
+
+
+</div>
+
+
+</div>
+
+
+
 
 <script src="{{ url_for('static', filename='js/activity_logs.js') }}"></script>
 
+
 </body>
+
 </html>

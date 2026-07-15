@@ -11,6 +11,11 @@ routes = Blueprint("routes", __name__)
 def create_incident_page():
     return render_template("create_incident.html")
 
+# ---------------- ACTIVITY LOGS PAGE ----------------
+@routes.route("/activity-logs-page")
+def activity_logs_page():
+    return render_template("activity_logs.html")
+
 # ---------------- VIEW INCIDENTS PAGE ----------------
 @routes.route("/view-incidents")
 def view_incidents_page():

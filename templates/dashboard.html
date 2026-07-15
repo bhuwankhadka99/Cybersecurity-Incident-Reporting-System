@@ -2,79 +2,431 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CyberSafe Dashboard</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+
+<style>
+
+body {
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#f4f7fb;
+}
+
+
+/* Navigation */
+
+.navbar {
+
+    background:#0b1f3a;
+    color:white;
+    padding:18px 35px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+}
+
+
+.logo {
+
+    font-size:24px;
+    font-weight:bold;
+
+}
+
+
+.nav-links {
+
+    list-style:none;
+    display:flex;
+    gap:20px;
+
+}
+
+
+.nav-links a {
+
+    color:white;
+    text-decoration:none;
+
+}
+
+
+.nav-links a:hover {
+
+    color:#64b5f6;
+
+}
+
+
+
+/* Hero */
+
+.hero {
+
+    text-align:center;
+    padding:40px;
+
+}
+
+
+.hero h1 {
+
+    color:#0b1f3a;
+
+}
+
+
+.hero p {
+
+    color:#555;
+
+}
+
+
+
+/* Statistics */
+
+.stats-container {
+
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+
+}
+
+
+.stat-card {
+
+    background:white;
+    width:220px;
+    padding:25px;
+    text-align:center;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+
+}
+
+
+.stat-card h2 {
+
+    font-size:35px;
+    color:#1565c0;
+
+}
+
+
+
+/* Action Cards */
+
+.card-container {
+
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    margin:40px;
+
+}
+
+
+.card {
+
+    background:white;
+    width:250px;
+    padding:25px;
+    text-align:center;
+    border-radius:12px;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+
+}
+
+
+.card:hover {
+
+    transform:translateY(-5px);
+
+}
+
+
+.card h2 {
+
+    font-size:40px;
+
+}
+
+
+
+</style>
+
+
 </head>
+
 
 <body>
 
-    <nav class="navbar">
 
-        <div class="logo">
-            🛡 CyberSafe
-        </div>
 
-        <ul class="nav-links">
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/create-incident-page">Create Incident</a></li>
-            <li><a href="/incidents-page">Incidents</a></li>
-            <li><a href="/activity-logs-page">Activity Logs</a></li>
-            <li><a href="/register-page">Register User</a></li>
-            <li><a href="/login-page">Logout</a></li>
-        </ul>
+<nav class="navbar">
 
-    </nav>
 
-    <div class="hero">
+<div class="logo">
 
-        <h1>Cybersecurity Incident Reporting System</h1>
+🛡 CyberSafe
 
-        <p>
-            Report, monitor and manage cybersecurity incidents securely.
-        </p>
+</div>
 
-    </div>
 
-    <div class="card-container">
+<ul class="nav-links">
 
-        <div class="card"
-             onclick="window.location.href='/create-incident-page'">
 
-            <h2>🛡</h2>
+<li>
+<a href="/dashboard">
+Dashboard
+</a>
+</li>
 
-            <h3>Create Incident</h3>
 
-            <p>Report a new cybersecurity incident.</p>
+<li>
+<a href="/create-incident">
+Create Incident
+</a>
+</li>
 
-        </div>
 
-        <div class="card"
-             onclick="window.location.href='/incidents-page'">
+<li>
+<a href="/view-incidents">
+Incidents
+</a>
+</li>
 
-            <h2>📋</h2>
 
-            <h3>View Incidents</h3>
+<li>
+<a href="/activity-logs">
+Activity Logs
+</a>
+</li>
 
-            <p>See all reported incidents.</p>
 
-        </div>
+<li>
+<a href="/login-page">
+Logout
+</a>
+</li>
 
-        <div class="card"
-             onclick="window.location.href='/activity-logs-page'">
 
-            <h2>📜</h2>
+</ul>
 
-            <h3>Activity Logs</h3>
 
-            <p>Track all system activities.</p>
+</nav>
 
-        </div>
 
-    </div>
+
+
+<div class="hero">
+
+
+<h1>
+Cybersecurity Incident Reporting System
+</h1>
+
+
+<p>
+Report, monitor and manage cybersecurity incidents securely.
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="stats-container">
+
+
+<div class="stat-card">
+
+<h2 id="totalIncidents">
+0
+</h2>
+
+<p>
+Total Incidents
+</p>
+
+</div>
+
+
+
+<div class="stat-card">
+
+<h2 id="openIncidents">
+0
+</h2>
+
+<p>
+Open Incidents
+</p>
+
+</div>
+
+
+
+<div class="stat-card">
+
+<h2 id="criticalIncidents">
+0
+</h2>
+
+<p>
+Critical Incidents
+</p>
+
+</div>
+
+
+
+<div class="stat-card">
+
+<h2 id="resolvedIncidents">
+0
+</h2>
+
+<p>
+Resolved Incidents
+</p>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="card-container">
+
+
+<div class="card"
+onclick="window.location.href='/create-incident'">
+
+<h2>
+🛡
+</h2>
+
+<h3>
+Create Incident
+</h3>
+
+<p>
+Report a new cybersecurity incident.
+</p>
+
+</div>
+
+
+
+
+
+<div class="card"
+onclick="window.location.href='/view-incidents'">
+
+<h2>
+📋
+</h2>
+
+<h3>
+View Incidents
+</h3>
+
+<p>
+See all reported incidents.
+</p>
+
+</div>
+
+
+
+
+
+<div class="card"
+onclick="window.location.href='/activity-logs'">
+
+<h2>
+📜
+</h2>
+
+<h3>
+Activity Logs
+</h3>
+
+<p>
+Track system activities.
+</p>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+fetch("/incidents")
+
+.then(response => response.json())
+
+.then(data => {
+
+
+let incidents = data.incidents;
+
+
+document.getElementById("totalIncidents").innerHTML =
+incidents.length;
+
+
+
+document.getElementById("openIncidents").innerHTML =
+incidents.filter(i => i.status === "Open").length;
+
+
+
+document.getElementById("criticalIncidents").innerHTML =
+incidents.filter(i => i.severity === "Critical").length;
+
+
+
+document.getElementById("resolvedIncidents").innerHTML =
+incidents.filter(i => i.status === "Resolved").length;
+
+
+
+});
+
+
+</script>
+
+
 
 </body>
+
 </html>
