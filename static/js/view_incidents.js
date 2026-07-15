@@ -1,63 +1,167 @@
 function loadIncidents(){
 
+    fetch("/incidents")
 
-fetch("/incidents")
+    .then(response => response.json())
 
+    .then(data => {
 
-.then(response => response.json())
+        let table = document.getElementById("incidentTable");
 
-
-.then(data => {
-
-
-let table = document.getElementById("incidentTable");
+        table.innerHTML = "";
 
 
-table.innerHTML = "";
+        data.incidents.forEach(incident => {
 
 
+            let row = `
 
-data.incidents.forEach(incident => {
+            <tr>
 
+            <td>${incident.id}</td>
 
-let row = `
+            <td>${incident.title}</td>
 
-<tr>
+            <td>${incident.description}</td>
 
-<td>${incident.id}</td>
+            <td>${incident.severity}</td>
 
-<td>${incident.title}</td>
+            <td>${incident.status}</td>
 
-<td>${incident.description}</td>
+            <td>${incident.user_id}</td>
 
-<td>${incident.severity}</td>
+            <td>
 
-<td>${incident.status}</td>
-
-<td>${incident.user_id}</td>
-
-</tr>
-
-`;
+            <button onclick="editIncident(${incident.id})">
+            ✏️ Edit
+            </button>
 
 
-table.innerHTML += row;
+            <button onclick="deleteIncident(${incident.id})">
+            🗑 Delete
+            </button>
 
 
-});
+            </td>
+
+            </tr>
+
+            `;
 
 
-})
+            table.innerHTML += row;
 
 
-.catch(error => {
+        });
 
-console.log(error);
 
-});
+    })
+
+
+    .catch(error => {
+
+        console.log(error);
+
+    });
 
 
 }
+
+
+
+
+function deleteIncident(id){
+
+
+    if(confirm("Are you sure you want to delete this incident?")){
+
+
+        fetch(`/incident/${id}`, {
+
+            method:"DELETE"
+
+        })
+
+
+        .then(response => response.json())
+
+
+        .then(data => {
+
+
+            alert(data.message);
+
+
+            loadIncidents();
+
+
+        });
+
+
+    }
+
+}
+
+
+
+
+function editIncident(id){
+
+
+    let title = prompt("Enter new incident title:");
+
+    let severity = prompt(
+        "Enter severity (Low, Medium, High, Critical):"
+    );
+
+
+    if(title && severity){
+
+
+        fetch(`/incident/${id}`,{
+
+
+            method:"PUT",
+
+
+            headers:{
+
+                "Content-Type":"application/json"
+
+            },
+
+
+            body:JSON.stringify({
+
+                title:title,
+
+                severity:severity
+
+            })
+
+
+        })
+
+
+        .then(response=>response.json())
+
+
+        .then(data=>{
+
+
+            alert(data.message);
+
+
+            loadIncidents();
+
+
+        });
+
+
+    }
+
+}
+
 
 
 

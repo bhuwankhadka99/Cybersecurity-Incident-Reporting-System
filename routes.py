@@ -151,7 +151,7 @@ def create_incident():
         category_id=category_id,
         severity=severity,
         status=status,
-        reported_by=user_id
+        user_id=user_id
 
     )
 
@@ -200,7 +200,7 @@ def get_incidents():
             "description": incident.description,
             "severity": incident.severity,
             "status": incident.status,
-            "user_id": incident.reported_by
+            "user_id": incident.user_id
 
         })
 
