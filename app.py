@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 # from flask_login import LoginManager
 from config import Config
 from models import db
@@ -16,7 +16,7 @@ with app.app_context():
 # ---------------- HOME ----------------
 @app.route("/")
 def home():
-    return "<h1>Cybersecurity Incident Reporting System</h1><p>Flask is connected successfully!</p>"
+    return redirect("/login-page")
 
 
 # ---------------- REGISTER PAGE ----------------
