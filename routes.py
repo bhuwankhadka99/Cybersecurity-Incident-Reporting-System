@@ -332,3 +332,9 @@ def get_activity_logs():
     return jsonify({
         "logs": output
     }), 200
+
+# ---------------- EDIT INCIDENT PAGE ----------------
+@routes.route("/edit-incident")
+def edit_incident_page():
+
+    return render_template("edit_incident.html")

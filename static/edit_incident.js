@@ -10,7 +10,7 @@ document.getElementById("editForm").addEventListener("submit", async function(ev
     const severity = document.getElementById("severity").value;
     const status = document.getElementById("status").value;
 
-    const response = await fetch(`/incident/${incidentId}`, {
+    const response = await fetch(`/incidents/${incidentId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
