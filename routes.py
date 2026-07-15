@@ -187,3 +187,21 @@ def delete_incident(id):
     db.session.commit()
 
     return jsonify({"message": "Incident deleted successfully"}), 200
+
+# ---------------- GET ACTIVITY LOGS ----------------
+@routes.route("/activity-logs", methods=["GET"])
+def get_activity_logs():
+
+    logs = ActivityLog.query.all()
+
+    output = []
+
+    for log in logs:
+        output.append({
+            "id": log.id,
+            "user_id": log.user_id,
+            "action": log.action,
+            "timestamp": str(log.timestamp)
+        })
+
+    return jsonify({"logs": output}), 200

@@ -13,11 +13,6 @@ with app.app_context():
     print(db.metadata.tables.keys())
     db.create_all()
 
-# login_manager = LoginManager()
-# login_manager.init_app(app)
-# login_manager.login_view = "routes.login"
-
-
 # ---------------- HOME ----------------
 @app.route("/")
 def home():
@@ -47,11 +42,20 @@ def dashboard():
 def create_incident_page():
     return render_template("create_incident.html")
 
+
 # ---------------- VIEW INCIDENTS PAGE ----------------
 @app.route("/incidents-page")
 def incidents_page():
     return render_template("incidents.html")
 
+
+# ---------------- ACTIVITY LOG PAGE ----------------
+@app.route("/activity-logs-page")
+def activity_logs_page():
+    return render_template("activity_logs.html")
+
+
+# Register API routes
 from routes import routes
 app.register_blueprint(routes)
 
@@ -59,5 +63,3 @@ print(app.url_map)
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-    
