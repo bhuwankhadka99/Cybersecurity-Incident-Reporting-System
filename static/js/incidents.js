@@ -36,3 +36,30 @@ function updateIncident(id) {
     window.location.href = `/edit-incident-page?id=${id}`;
 
 }
+
+function deleteIncident(id) {
+
+    if(confirm("Are you sure you want to delete this incident?")) {
+
+        fetch(`/incidents/${id}`, {
+            method: "DELETE"
+        })
+
+        .then(response => response.json())
+
+        .then(data => {
+
+            alert(data.message);
+
+            location.reload();
+
+        
+        })
+        .catch(error => {
+            console.error(error);
+        });
+
+
+    }
+
+}
