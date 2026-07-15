@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Incidents</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<h1>All Incidents</h1>
+
+<table border="1" cellpadding="10">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Severity</th>
+            <th>Status</th>
+            <th>User ID</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody id="incidentTable">
+    </tbody>
+
+</table>
+
+<script src="{{ url_for('static', filename='js/incidents.js') }}"></script>
+
+</body>
+</html>

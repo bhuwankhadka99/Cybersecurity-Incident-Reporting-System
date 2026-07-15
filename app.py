@@ -47,6 +47,10 @@ def dashboard():
 def create_incident_page():
     return render_template("create_incident.html")
 
+# ---------------- VIEW INCIDENTS PAGE ----------------
+@app.route("/incidents-page")
+def incidents_page():
+    return render_template("incidents.html")
 
 from routes import routes
 app.register_blueprint(routes)
@@ -55,3 +59,5 @@ print(app.url_map)
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+    
