@@ -89,6 +89,11 @@ def incidents_page():
     return render_template("incidents.html")
 
 
+# ---------------- EDIT INCIDENT PAGE ----------------
+@app.route("/edit-incident-page")
+@login_required
+def edit_incident_page():
+    return render_template("edit_incident.html")
 
 
 

@@ -31,47 +31,8 @@ fetch("/incidents")
 });
 
 
-async function updateIncident(id){
+function updateIncident(id) {
 
-    const status = prompt(
-        "Enter new status (Open, In Progress, Resolved):"
-    );
+    window.location.href = `/edit-incident-page?id=${id}`;
 
-    if(!status){
-        return;
-    }
-
-    const response = await fetch(`/incident/${id}`,{
-        method:"PUT",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-            status:status
-        })
-    });
-
-    const result = await response.json();
-
-    alert(result.message);
-
-    location.reload();
-}
-
-
-async function deleteIncident(id){
-
-    if(!confirm("Delete this incident?")){
-        return;
-    }
-
-    const response = await fetch(`/incident/${id}`,{
-        method:"DELETE"
-    });
-
-    const result = await response.json();
-
-    alert(result.message);
-
-    location.reload();
 }

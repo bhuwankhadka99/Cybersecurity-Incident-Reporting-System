@@ -18,11 +18,6 @@ def create_incident_page():
 def activity_logs_page():
     return render_template("activity_logs.html")
 
-# ---------------- VIEW INCIDENTS PAGE ----------------
-@routes.route("/view-incidents")
-def view_incidents_page():
-    return render_template("view_incidents.html")
-
 
 # ---------------- REGISTER ----------------
 @routes.route("/register", methods=["POST"])
@@ -194,10 +189,6 @@ def create_incident():
         "message": "Incident created successfully"
     }), 201
 
-
-
-
-
 # ---------------- GET INCIDENTS ----------------
 @routes.route("/incidents", methods=["GET"])
 def get_incidents():
@@ -205,7 +196,6 @@ def get_incidents():
     incidents = Incident.query.all()
 
     output = []
-
 
     for incident in incidents:
 
@@ -220,9 +210,27 @@ def get_incidents():
 
         })
 
-
     return jsonify({
         "incidents": output
+    }), 200
+
+
+# ---------------- GET SINGLE INCIDENT ----------------
+@routes.route("/incidents/<int:id>", methods=["GET"])
+def get_single_incident(id):
+
+    incident = Incident.query.get(id)
+
+    if not incident:
+        return jsonify({"error": "Incident not found"}), 404
+
+    return jsonify({
+        "id": incident.id,
+        "title": incident.title,
+        "description": incident.description,
+        "severity": incident.severity,
+        "status": incident.status,
+        "user_id": incident.user_id
     }), 200
 
 
