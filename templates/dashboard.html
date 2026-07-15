@@ -1,47 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
 
-    <h1>Cybersecurity Incident Reporting System</h1>
+    <nav class="navbar">
 
-    <h2>Dashboard</h2>
+        <div class="logo">
+            🛡 CyberSafe
+        </div>
 
-    <hr>
+        <ul class="nav-links">
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/create-incident-page">Create Incident</a></li>
+            <li><a href="/incidents-page">Incidents</a></li>
+            <li><a href="/activity-logs-page">Activity Logs</a></li>
+            <li><a href="/register-page">Register User</a></li>
+            <li><a href="/login-page">Logout</a></li>
+        </ul>
 
-    <h3>Welcome!</h3>
+    </nav>
 
-    <p>Select an option:</p>
+    <div class="hero">
 
-    <button onclick="window.location.href='/create-incident-page'">
-        Create Incident
-    </button>
+        <h1>Cybersecurity Incident Reporting System</h1>
 
-    <br><br>
+        <p>
+            Report, monitor and manage cybersecurity incidents securely.
+        </p>
 
-    <button onclick="window.location.href='/incidents-page'">
-        View Incidents
-    </button>
+    </div>
 
-<br><br>
+    <div class="card-container">
 
-    <button onclick="window.location.href='/register-page'">
-        Register New User
-    </button>
+        <div class="card"
+             onclick="window.location.href='/create-incident-page'">
 
-    <br><br>
+            <h2>🛡</h2>
 
-<button onclick="window.location.href='/login-page'">
-    Logout
-</button>
-<br><br>
+            <h3>Create Incident</h3>
 
-<button onclick="window.location.href='/activity-logs-page'">
-    View Activity Logs
-</button>
+            <p>Report a new cybersecurity incident.</p>
+
+        </div>
+
+        <div class="card"
+             onclick="window.location.href='/incidents-page'">
+
+            <h2>📋</h2>
+
+            <h3>View Incidents</h3>
+
+            <p>See all reported incidents.</p>
+
+        </div>
+
+        <div class="card"
+             onclick="window.location.href='/activity-logs-page'">
+
+            <h2>📜</h2>
+
+            <h3>Activity Logs</h3>
+
+            <p>Track all system activities.</p>
+
+        </div>
+
+    </div>
 
 </body>
 </html>
