@@ -1,33 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
 
-    <h1>Cybersecurity Incident Reporting System</h1>
+    <div class="login-container">
 
-    <h2>Register</h2>
+        <div class="login-card">
 
-    <form id="registerForm">
+            <h1>🛡 CyberSafe</h1>
 
-        <label>Username</label><br>
-        <input type="text" id="username" required><br><br>
+            <h2>Create Account</h2>
 
-        <label>Email</label><br>
-        <input type="email" id="email" required><br><br>
+            <p>Register to use the Incident Reporting System</p>
 
-        <label>Password</label><br>
-        <input type="password" id="password" required><br><br>
+            <form id="registerForm">
 
-        <button type="submit">Register</button>
+                <label>Username</label>
 
-    </form>
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Enter username"
+                    required>
 
-    <p id="message"></p>
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter email"
+                    required>
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter password"
+                    required>
+
+                <button type="submit">
+                    Register
+                </button>
+
+            </form>
+
+            <p id="message"></p>
+
+            <div class="login-footer">
+
+                Already have an account?
+
+                <a href="/login-page">
+                    Login
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
 </body>
+
 </html>
