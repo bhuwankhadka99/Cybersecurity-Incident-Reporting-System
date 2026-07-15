@@ -19,5 +19,13 @@ document.getElementById("registerForm").addEventListener("submit", async functio
 
     const result = await response.json();
 
-    document.getElementById("message").innerHTML = result.message || result.error;
+    document.getElementById("message").innerHTML =
+        result.message || result.error;
+
+    // If registration is successful, redirect to login page
+    if (response.ok) {
+        setTimeout(function () {
+            window.location.href = "/login-page";
+        }, 1000);
+    }
 });
