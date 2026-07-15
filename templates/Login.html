@@ -1,30 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
 
-    <h1>Cybersecurity Incident Reporting System</h1>
+    <div class="login-container">
 
-    <h2>Login</h2>
+        <div class="login-card">
 
-    <form id="loginForm">
+            <h1>🛡 CyberSafe</h1>
 
-        <label>Email</label><br>
-        <input type="email" id="email" required><br><br>
+            <h2>Welcome Back</h2>
 
-        <label>Password</label><br>
-        <input type="password" id="password" required><br><br>
+            <p>Please login to continue</p>
 
-        <button type="submit">Login</button>
+            <form id="loginForm">
 
-    </form>
+                <label>Email</label>
 
-    <p id="message"></p>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required>
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required>
+
+                <button type="submit">
+                    Login
+                </button>
+
+            </form>
+
+            <p id="message"></p>
+
+            <div class="login-footer">
+
+                Don't have an account?
+
+                <a href="/register-page">
+                    Register
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
 
     <script src="{{ url_for('static', filename='js/login.js') }}"></script>
 
 </body>
+
 </html>
