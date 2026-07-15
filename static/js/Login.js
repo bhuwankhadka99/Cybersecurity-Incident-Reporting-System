@@ -19,4 +19,11 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 
     document.getElementById("message").innerText =
         result.message || result.error;
+
+    // If login is successful, go to the dashboard
+    if (response.ok) {
+        setTimeout(function () {
+            window.location.href = "/dashboard";
+        }, 1000);
+    }
 });
