@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>View Incidents - CyberSafe</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<div class="navbar">
+
+<h2>🛡 CyberSafe</h2>
+
+<a href="/dashboard">
+Dashboard
+</a>
+
+</div>
+
+
+
+<div class="container">
+
+
+<div class="incident-card">
+
+
+<h1>All Security Incidents</h1>
+
+
+<button onclick="loadIncidents()" class="create-btn">
+🔄 Refresh Incidents
+</button>
+
+
+<table border="1" width="100%" style="margin-top:20px;">
+
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Title</th>
+
+<th>Description</th>
+
+<th>Severity</th>
+
+<th>Status</th>
+
+<th>User ID</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="incidentTable">
+
+
+</tbody>
+
+
+</table>
+
+
+<br>
+
+
+<button 
+class="back-btn"
+onclick="window.location.href='/dashboard'">
+
+🔙 Back to Dashboard
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+<script src="{{ url_for('static', filename='js/view_incidents.js') }}"></script>
+
+
+</body>
+
+</html>
