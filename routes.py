@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, render_template
+from flask import Blueprint, redirect, request, jsonify, render_template
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, User, Incident, ActivityLog
@@ -121,6 +121,15 @@ def login():
             "email": user.email
         }
     }), 200
+
+# ---------------- LOGOUT ----------------
+@routes.route("/logout")
+@login_required
+def logout():
+
+    logout_user()
+
+    return redirect("/login-page")
 
 
 
