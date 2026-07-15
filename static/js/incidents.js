@@ -16,6 +16,10 @@ fetch("/incidents")
             <td>${incident.user_id}</td>
 
             <td>
+                <button onclick="updateIncident(${incident.id})">
+                    Update
+                </button>
+
                 <button onclick="deleteIncident(${incident.id})">
                     Delete
                 </button>
@@ -25,6 +29,34 @@ fetch("/incidents")
     });
 
 });
+
+
+async function updateIncident(id){
+
+    const status = prompt(
+        "Enter new status (Open, In Progress, Resolved):"
+    );
+
+    if(!status){
+        return;
+    }
+
+    const response = await fetch(`/incident/${id}`,{
+        method:"PUT",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            status:status
+        })
+    });
+
+    const result = await response.json();
+
+    alert(result.message);
+
+    location.reload();
+}
 
 
 async function deleteIncident(id){
@@ -42,5 +74,4 @@ async function deleteIncident(id){
     alert(result.message);
 
     location.reload();
-
 }
