@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Incident</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<h1>Create Incident</h1>
+
+<form id="incidentForm">
+
+    <label>Title</label><br>
+    <input type="text" id="title" required><br><br>
+
+    <label>Description</label><br>
+    <textarea id="description" required></textarea><br><br>
+
+    <label>Category ID</label><br>
+    <input type="number" id="category_id" required><br><br>
+
+    <label>Severity</label><br>
+    <select id="severity">
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+        <option>Critical</option>
+    </select><br><br>
+
+    <label>User ID</label><br>
+    <input type="number" id="user_id" required><br><br>
+
+    <button type="submit">Create Incident</button>
+
+</form>
+
+<p id="message"></p>
+
+<script src="{{ url_for('static', filename='js/incident.js') }}"></script>
+
+</body>
+</html>
