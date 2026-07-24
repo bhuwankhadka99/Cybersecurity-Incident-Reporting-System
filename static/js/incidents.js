@@ -33,7 +33,7 @@ fetch("/incidents")
 
 function updateIncident(id) {
 
-    window.location.href = `/edit-incident-page?id=${id}`;
+    window.location.href = `/edit-incident?id=${id}`;
 
 }
 

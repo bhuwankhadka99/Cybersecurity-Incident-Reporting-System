@@ -236,47 +236,41 @@ def get_single_incident(id):
 
 
 
-
 # ---------------- UPDATE INCIDENT ----------------
 @routes.route("/incident/<int:id>", methods=["PUT"])
 def update_incident(id):
 
     incident = Incident.query.get(id)
 
-
     if not incident:
         return jsonify({"error": "Incident not found"}), 404
 
-
-
     data = request.get_json()
-
-
 
     if "title" in data:
         incident.title = data["title"]
 
-
     if "description" in data:
         incident.description = data["description"]
-
 
     if "severity" in data:
         incident.severity = data["severity"]
 
-
     if "status" in data:
         incident.status = data["status"]
 
+    # Activity Log
+    log = ActivityLog(
+        user_id=incident.user_id,
+        action=f"Updated incident ID {incident.id}"
+    )
 
-
+    db.session.add(log)
     db.session.commit()
-
 
     return jsonify({
         "message": "Incident updated successfully"
     }), 200
-
 
 
 
@@ -292,7 +286,13 @@ def delete_incident(id):
     if not incident:
         return jsonify({"error": "Incident not found"}), 404
 
+     # Activity Log
+    log = ActivityLog(
+        user_id=incident.user_id,
+        action=f"Deleted incident ID {incident.id}"
+    )
 
+    db.session.add(log)
 
     db.session.delete(incident)
     db.session.commit()

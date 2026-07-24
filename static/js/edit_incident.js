@@ -1,6 +1,19 @@
 const params = new URLSearchParams(window.location.search);
 const incidentId = params.get("id");
 
+// Load the current incident data
+fetch(`/incidents/${incidentId}`)
+.then(response => response.json())
+.then(data => {
+
+    document.getElementById("title").value = data.title;
+    document.getElementById("description").value = data.description;
+    document.getElementById("severity").value = data.severity;
+    document.getElementById("status").value = data.status;
+
+});
+
+// Update the incident
 document.getElementById("editForm").addEventListener("submit", async function(event) {
 
     event.preventDefault();
@@ -10,7 +23,7 @@ document.getElementById("editForm").addEventListener("submit", async function(ev
     const severity = document.getElementById("severity").value;
     const status = document.getElementById("status").value;
 
-    const response = await fetch(`/incidents/${incidentId}`, {
+    const response = await fetch(`/incident/${incidentId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
