@@ -283,7 +283,7 @@ def update_incident(id):
 
 
 # ---------------- DELETE INCIDENT ----------------
-@routes.route("/incident/<int:id>", methods=["DELETE"])
+@routes.route("/incidents/<int:id>", methods=["DELETE"])
 def delete_incident(id):
 
     incident = Incident.query.get(id)
